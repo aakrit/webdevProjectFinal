@@ -5,9 +5,17 @@ class Event < ActiveRecord::Base
 
   has_many :user_events
   has_many :users, :through => :user_events
+  before_create :noemptyeventname, on: :create
 
   def users
     return User.where(:user_id => self.id)
+  end
+
+  protected
+  def noemptyeventname
+    if self.name.empty?
+      self.name = "To be Decided!"
+    end
   end
 
 end
