@@ -1,10 +1,15 @@
 ChicagoSocialTrolley::Application.routes.draw do
+
   # get "home/index"
   root :to => "home#index"
+
+  post '/userdetails/new' => 'userdetails#new', as: 'new_userdetails'
 
   get '/sessions/new' => 'Sessions#new', as: 'new_session'
   post '/sessions' => 'Sessions#create', as: 'sessions'
   delete '/sessions' => 'Sessions#destroy', as: 'session'
+
+  post '/events/join/:event_id' => 'events#add_user'
 
   resources :photos
   resources :groups
@@ -12,7 +17,8 @@ ChicagoSocialTrolley::Application.routes.draw do
   resources :events
   resources :userdetails
   resources :users
-
+  resources :grups
+  resources :user_events
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

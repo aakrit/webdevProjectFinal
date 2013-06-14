@@ -16,6 +16,10 @@
     <%= f.text_field :name %>
   </div>
   <div class="field">
+    <%= f.label :venue_id %><br />
+    <%= f.collection_select :venue_id, Venue.all, :id, :name %>
+  </div>
+  <div class="field">
     <%= f.label :time %><br />
     <%= f.datetime_select :time %>
   </div>

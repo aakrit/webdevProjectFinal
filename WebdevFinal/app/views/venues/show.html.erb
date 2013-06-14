@@ -9,6 +9,14 @@
   <b>Address:</b>
   <%= @venue.address %>
 </p>
+<p>
+  <b>Events:</b>
+  <ul>
+  <% @venue.events.each do |event|  %>
+    <li><%= link_to event.name, event %> (Description: <%= event.description %>)</li>
+  <% end %>
+  </ul>
+</p>
 
 
 <%= link_to 'Edit', edit_venue_path(@venue) %> |

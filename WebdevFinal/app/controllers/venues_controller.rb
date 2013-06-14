@@ -1,4 +1,10 @@
 class VenuesController < ApplicationController
+
+  before_filter :find_venue, except: [:new, :create, :index]
+
+  def find_venue
+    @venue = Venue.find(params[:id])
+  end
   # GET /venues
   # GET /venues.json
   def index
@@ -13,8 +19,7 @@ class VenuesController < ApplicationController
   # GET /venues/1
   # GET /venues/1.json
   def show
-    @venue = Venue.find(params[:id])
-
+    # @venue = Venue.find(params[:id])
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @venue }
@@ -34,7 +39,7 @@ class VenuesController < ApplicationController
 
   # GET /venues/1/edit
   def edit
-    @venue = Venue.find(params[:id])
+    # @venue = Venue.find(params[:id])
   end
 
   # POST /venues
@@ -56,7 +61,7 @@ class VenuesController < ApplicationController
   # PUT /venues/1
   # PUT /venues/1.json
   def update
-    @venue = Venue.find(params[:id])
+    # @venue = Venue.find(params[:id])
 
     respond_to do |format|
       if @venue.update_attributes(params[:venue])
@@ -72,7 +77,7 @@ class VenuesController < ApplicationController
   # DELETE /venues/1
   # DELETE /venues/1.json
   def destroy
-    @venue = Venue.find(params[:id])
+    # @venue = Venue.find(params[:id])
     @venue.destroy
 
     respond_to do |format|

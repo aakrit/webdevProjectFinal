@@ -24,7 +24,9 @@ class UserdetailsController < ApplicationController
   # GET /userdetails/new
   # GET /userdetails/new.json
   def new
-    @userdetail = Userdetail.new
+    @userdetail = Userdetail.new :user_id => params[:userid]
+
+    # @userdetail = Userdetail.new
 
     respond_to do |format|
       format.html # new.html.erb
@@ -35,6 +37,7 @@ class UserdetailsController < ApplicationController
   # GET /userdetails/1/edit
   def edit
     @userdetail = Userdetail.find(params[:id])
+    # @userdetail_id = Userdetail.find(params[:user_id])
   end
 
   # POST /userdetails

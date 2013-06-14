@@ -1,6 +1,30 @@
-<h1>Editing user</h1>
+<h1>Editing User #<%= @user.id %></h1>
 
-<%= render 'form' %>
 
-<%= link_to 'Show', @user %> |
-<%= link_to 'Back', users_path %>
+<%= form_tag(user_url(@user), method: 'put') do %>
+
+  <div>
+    <%= label_tag :username %><br />
+    <%= text_field_tag :username, @user.username %>
+  </div>
+
+  <div>
+    <%= submit_tag "Update User" %>
+  </div>
+
+<% end %>
+
+<% if @user.userdetail.nil? %>
+  <div>
+      <p>Add more user information.</p>
+      <%= form_tag(new_userdetail_url) do %>
+      <%= hidden_field_tag :userid, @user.id %>
+      <%= submit_tag("Add") %>
+  </div>
+<% end %>
+<% else %>
+  <div>
+      <p>Edit user's detailed information.</p>
+    <%= link_to 'Edit', edit_userdetail_path(@user.userdetail.id ) %>
+  </div>
+<% end %>

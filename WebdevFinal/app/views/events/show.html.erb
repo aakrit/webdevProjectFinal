@@ -14,6 +14,15 @@
   <b>Description:</b>
   <%= @event.description %>
 </p>
+<p>
+  <b>Venue:</b>
+  <%= @event.venue.name %>
+</p>
+<p>
+  <b>Location:</b>
+  <%= @event.venue.address %>
+</p>
+<!-- Need to List all the users at the event -->
 
 
 <%= link_to 'Edit', edit_event_path(@event) %> |

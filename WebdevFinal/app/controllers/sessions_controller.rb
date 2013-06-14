@@ -7,15 +7,15 @@ class SessionsController < ApplicationController
 
     if @user.present? && @user.authenticate(params[:password])
       session[:user_id] = @user.id
-      redirect_to movies_url, notice: 'Signed in successfully.'
+      redirect_to users_url, notice: 'Sign in successful.'
     else
-      render 'new'
+      redirect_to new_session_url, notice: 'Sign in failed.'
     end
   end
 
   def destroy
     reset_session
-    redirect_to movies_url, notice: 'Signed out successfully.'
+    redirect_to root_url, notice: 'Signed out successfully.'
   end
 end
 

@@ -9,7 +9,10 @@
   <b>Location:</b>
   <%= @photo.location %>
 </p>
-
+<p>
+  <b>User:</b>
+  <%= @photo.user.username %>
+</p>
 
 <%= link_to 'Edit', edit_photo_path(@photo) %> |
 <%= link_to 'Back', photos_path %>

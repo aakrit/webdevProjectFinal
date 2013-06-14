@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  groupname: MyString
+  grouptype: MyString
+  description: MyText
+
+two:
+  groupname: MyString
+  grouptype: MyString
+  description: MyText

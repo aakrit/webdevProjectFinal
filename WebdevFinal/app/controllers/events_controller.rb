@@ -1,4 +1,21 @@
 class EventsController < ApplicationController
+
+  before_filter :find_event, except: [:new, :create, :index, :edit]
+
+  def find_event
+    @event = Event.find(params[:id])
+  end
+
+  def add_user
+
+    @join = UserEvent.new()
+
+    @join.event_id = @event.id
+    @join.user_id = current_user.id
+    @join.save
+
+    redirect_to "/events"
+  end
   # GET /events
   # GET /events.json
   def index
@@ -13,8 +30,7 @@ class EventsController < ApplicationController
   # GET /events/1
   # GET /events/1.json
   def show
-    @event = Event.find(params[:id])
-
+    puts "++++++++++++++++++++++++++++++++++++++++++This event venue is: #{@event.venue} id is #{@event.id}"
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @event }
@@ -34,14 +50,18 @@ class EventsController < ApplicationController
 
   # GET /events/1/edit
   def edit
+
     @event = Event.find(params[:id])
+
+
   end
 
   # POST /events
   # POST /events.json
   def create
     @event = Event.new(params[:event])
-
+    @event.venue_id = params[:event][:venue_id]
+    puts "event.venueid which we just set: #{@event.venue_id}"
     respond_to do |format|
       if @event.save
         format.html { redirect_to @event, notice: 'Event was successfully created.' }
@@ -56,7 +76,6 @@ class EventsController < ApplicationController
   # PUT /events/1
   # PUT /events/1.json
   def update
-    @event = Event.find(params[:id])
 
     respond_to do |format|
       if @event.update_attributes(params[:event])
@@ -72,7 +91,6 @@ class EventsController < ApplicationController
   # DELETE /events/1
   # DELETE /events/1.json
   def destroy
-    @event = Event.find(params[:id])
     @event.destroy
 
     respond_to do |format|
